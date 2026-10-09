@@ -3,17 +3,17 @@ class Player
     @mark = mark    
   end
 
-  def play(board)
+  def play(grid)
     puts "Player #{@mark}:"
     
     cell = gets.chomp.to_i
     
-    while board.filled?(cell)
+    while grid.marked?(cell)
       puts "That spot's marked. Try again."
       
       cell = gets.chomp.to_i
     end
 
-    board.update(cell, @mark)
+    grid.update(cell, @mark)
   end
 end
