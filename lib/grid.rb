@@ -1,6 +1,8 @@
 class Grid
   include Winnable
 
+  attr_reader :marked
+
   def initialize
     @grid = Array.new(3) { Array.new(3) }
     label = 1
@@ -43,6 +45,10 @@ class Grid
       next if @grid[row].index(cell).nil?
       return [row, @grid[row].index(cell)]
     end
+  end
+
+  def draw?
+    @marked.length == 9
   end
 
   def have_a_winner
