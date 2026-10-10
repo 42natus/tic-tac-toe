@@ -8,12 +8,12 @@ class Player
 
   def play(grid)
     puts "Player #{@mark}:"
-    
+
     cell = gets.chomp.to_i
-    
-    while grid.marked?(cell)
-      puts "That spot's marked. Try again."
-      
+
+    while grid.marked?(cell) || !(1..9).include?(cell)
+      puts "Invalid spot. Try again!"
+
       cell = gets.chomp.to_i
     end
 
