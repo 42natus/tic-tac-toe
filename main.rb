@@ -8,12 +8,12 @@ player_o = Player.new('O')
 
 grid.display
 
-until grid.gameover? || grid.draw?
+until grid.gameover?
   player_x.play(grid)
   
   grid.display
 
-  if grid.gameover? || grid.draw?
+  if grid.gameover?
     break
   end
   
@@ -22,4 +22,9 @@ until grid.gameover? || grid.draw?
   grid.display
 end
 
-puts 'Game over!'
+puts '--- GAME OVER ---'
+if grid.draw?
+  puts 'The game\'s a tie!'
+else
+  puts grid.winner(player_x, player_o)
+end
