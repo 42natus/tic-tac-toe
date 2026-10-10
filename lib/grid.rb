@@ -1,7 +1,7 @@
+require_relative 'winnable'
+
 class Grid
   include Winnable
-
-  attr_reader :marked
 
   def initialize
     @grid = Array.new(3) { Array.new(3) }
@@ -62,5 +62,9 @@ class Grid
     else
       player_o.has_won
     end
+  end
+
+  def gameover?
+    have_a_winner || draw?
   end
 end
