@@ -17,17 +17,15 @@ class Grid
   end
 
   def display
-    puts '     |     |     '
-    puts "  #{@grid[0][0]}  |  #{@grid[0][1]}  |  #{@grid[0][2]}  "
-    puts '     |     |     '
-    puts '— — — — — — — — —'
-    puts '     |     |     '
-    puts "  #{@grid[1][0]}  |  #{@grid[1][1]}  |  #{@grid[1][2]}  "
-    puts '     |     |     '
-    puts '— — — — — — — — —'
-    puts '     |     |     '
-    puts "  #{@grid[2][0]}  |  #{@grid[2][1]}  |  #{@grid[2][2]}  "
-    puts '     |     |     '
+    space = '     |     |     '
+    line = '— — — — — — — — —'
+    row_one = "  #{@grid[0][0]}  |  #{@grid[0][1]}  |  #{@grid[0][2]}  "
+    row_two = "  #{@grid[1][0]}  |  #{@grid[1][1]}  |  #{@grid[1][2]}  "
+    row_three = "  #{@grid[2][0]}  |  #{@grid[2][1]}  |  #{@grid[2][2]}  "
+
+    puts '', space, row_one, space, line
+    puts space, row_two, space, line
+    puts space, row_three, space, ''
   end
 
   def marked?(cell)
