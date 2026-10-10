@@ -1,4 +1,6 @@
 class Grid
+  include Winnable
+
   def initialize
     @grid = Array.new(3) { Array.new(3) }
     label = 1
@@ -40,6 +42,19 @@ class Grid
     @grid.each_index do |row|
       next if @grid[row].index(cell).nil?
       return [row, @grid[row].index(cell)]
+    end
+  end
+
+  def have_a_winner
+    horizontal_win(@grid) || vertical_win(@grid) || diagonal_win(@grid)
+  end
+
+  def winner(player_x, player_o)
+    if horizontal_winner(@grid) == 'X' || vertical_winner(@grid) == 'X' ||
+       diagonal_winner(@grid) == 'X'
+      player_x.has_won
+    else
+      player_o.has_won
     end
   end
 end
