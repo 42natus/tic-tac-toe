@@ -1,6 +1,9 @@
 class Player
+  attr_reader :won
+
   def initialize(mark)
-    @mark = mark    
+    @mark = mark
+    @won = false
   end
 
   def play(grid)
@@ -15,5 +18,10 @@ class Player
     end
 
     grid.update(cell, @mark)
+  end
+
+  def has_won
+    puts "Player #{@mark} has won!"
+    @won = true
   end
 end
