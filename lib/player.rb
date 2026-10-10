@@ -1,13 +1,12 @@
 class Player
-  attr_reader :won
+  attr_reader :mark
 
   def initialize(mark)
     @mark = mark
-    @won = false
   end
 
   def play(grid)
-    puts "Player #{@mark}:"
+    print "Player #{mark} marks "
 
     cell = gets.chomp.to_i
 
@@ -17,11 +16,10 @@ class Player
       cell = gets.chomp.to_i
     end
 
-    grid.update(cell, @mark)
+    grid.update(cell, mark)
   end
 
   def has_won
-    puts "Player #{@mark} has won!"
-    @won = true
+    "Player #{mark} has won!"
   end
 end
