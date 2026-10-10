@@ -1,5 +1,5 @@
-module Winnable
-  def horizontal_win(grid)
+module Strikable
+  def has_horizontal_strike?(grid)
     grid.each do |row|
       return true if row.all?('X') || row.all?('O')
     end
@@ -7,8 +7,8 @@ module Winnable
     false
   end
 
-  def vertical_win(grid)
-    horizontal_win(grid.transpose)
+  def has_vertical_strike?(grid)
+    has_horizontal_strike?(grid.transpose)
   end
 
   def top_bottom_diagonal(grid)
@@ -26,29 +26,27 @@ module Winnable
     diagonal << grid[0][2]
   end
 
-  def diagonal_win(grid)
+  def has_diagonal_strike?(grid)
     tb_diagonal = top_bottom_diagonal(grid)
 
     bt_diagonal = bottom_top_diagonal(grid)
 
-    return true if tb_diagonal.all?('X') || tb_diagonal.all?('O') || 
-                   bt_diagonal.all?('X') || bt_diagonal.all?('O')
-
-    false
+    tb_diagonal.all?('X') || tb_diagonal.all?('O') || 
+    bt_diagonal.all?('X') || bt_diagonal.all?('O')
   end
 
-  def horizontal_winner(grid)
+  def horizontal_strike(grid)
     grid.each do |row|
       return 'X' if row.all?('X')
       return 'O' if row.all?('O')
     end
   end
 
-  def vertical_winner(grid)
-    horizontal_winner(grid.transpose)
+  def vertical_strike(grid)
+    horizontal_strike(grid.transpose)
   end
 
-  def diagonal_winner(grid)
+  def diagonal_strike(grid)
     tb_diagonal = top_bottom_diagonal(grid)
 
     bt_diagonal = bottom_top_diagonal(grid)

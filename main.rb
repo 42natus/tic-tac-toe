@@ -1,6 +1,6 @@
 require_relative 'lib/grid'
 require_relative 'lib/player'
-require_relative 'lib/winnable'
+require_relative 'lib/strikable'
 
 grid = Grid.new
 player_x = Player.new('X')
@@ -26,5 +26,5 @@ puts '--- GAME OVER ---'
 if grid.draw?
   puts 'The game\'s a tie!'
 else
-  puts grid.winner(player_x, player_o)
+  grid.announce_winner(player_x, player_o)
 end

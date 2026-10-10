@@ -1,7 +1,7 @@
-require_relative 'winnable'
+require_relative 'strikable'
 
 class Grid
-  include Winnable
+  include Strikable
 
   def initialize
     @grid = Array.new(3) { Array.new(3) }
@@ -49,20 +49,22 @@ class Grid
     @marked.length == 9
   end
 
-  def have_a_winner
-    horizontal_win(@grid) || vertical_win(@grid) || diagonal_win(@grid)
+  def strikable?
+    has_horizontal_strike?(@grid) || has_vertical_strike?(@grid) || 
+    has_diagonal_strike?(@grid)
   end
-
-  def winner(player_x, player_o)
-    if horizontal_winner(@grid) == 'X' || vertical_winner(@grid) == 'X' ||
-       diagonal_winner(@grid) == 'X'
-      player_x.has_won
-    else
-      player_o.has_won
-    end
-  end
-
+  
   def gameover?
-    have_a_winner || draw?
+    strikable? || draw?
+  end
+
+  def announce_winner(player_x, player_o)
+    puts player_x.has_won if horizontal_strike(@grid) == player_x.mark ||
+                             vertical_strike(@grid) == player_x.mark ||
+                             diagonal_strike(@grid) == player_x.mark
+
+    puts player_o.has_won if horizontal_strike(@grid) == player_o.mark ||
+                             vertical_strike(@grid) == player_o.mark ||
+                             diagonal_strike(@grid) == player_o.mark
   end
 end
