@@ -2,6 +2,7 @@
 
 require_relative 'lib/grid'
 require_relative 'lib/player'
+require_relative 'lib/drawable'
 require_relative 'lib/strikable'
 
 grid = Grid.new

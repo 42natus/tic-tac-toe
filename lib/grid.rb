@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require_relative 'drawable'
 require_relative 'strikable'
 
 # This defines the 3x3 grid the game will be played on, as well as its
 # behaviour/responsibilities.
 class Grid
   include Strikable
+  include Drawable
 
   def initialize
     @grid = Array.new(3) { Array.new(3) }
@@ -21,15 +23,7 @@ class Grid
   end
 
   def display
-    space = '     |     |     '
-    line = '— — — — — — — — —'
-    row_one = "  #{@grid[0][0]}  |  #{@grid[0][1]}  |  #{@grid[0][2]}  "
-    row_two = "  #{@grid[1][0]}  |  #{@grid[1][1]}  |  #{@grid[1][2]}  "
-    row_three = "  #{@grid[2][0]}  |  #{@grid[2][1]}  |  #{@grid[2][2]}  "
-
-    puts '', space, row_one, space, line
-    puts space, row_two, space, line
-    puts space, row_three, space, ''
+    draw(@grid)
   end
 
   def marked?(cell)
