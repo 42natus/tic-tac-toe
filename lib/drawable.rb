@@ -7,16 +7,28 @@ module Drawable
     "  #{row[0]}  |  #{row[1]}  |  #{row[2]}  "
   end
 
+  def clean(row)
+    row.each_index do |i|
+      row[i] = ' ' if row[i].instance_of?(Integer)
+    end
+
+    "  #{row[0]}  |  #{row[1]}  |  #{row[2]}  "
+  end
+
   def arrange(space, line, rows)
     puts '', space, rows[0], space, line
     puts space, rows[1], space, line
     puts space, rows[2], space, ''
   end
 
-  def draw(grid)
+  def draw(grid, clean: false)
     space = '     |     |     '
     line = '— — — — — — — — —'
-    rows = grid.map { |row| format(row) }
+    rows = if clean
+             grid.map { |row| clean(row) }
+           else
+             grid.map { |row| format(row) }
+           end
 
     arrange(space, line, rows)
   end

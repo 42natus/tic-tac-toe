@@ -23,7 +23,11 @@ class Grid
   end
 
   def display
-    draw(@grid)
+    if gameover?
+      draw(@grid, clean: true)
+    else
+      draw(@grid)
+    end
   end
 
   def update(cell, mark)
