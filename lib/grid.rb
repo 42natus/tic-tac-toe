@@ -45,7 +45,7 @@ class Grid
   end
 
   def draw?
-    @marked.length == 9
+    @marked.length == 9 && !strikable?
   end
 
   def strikable?
