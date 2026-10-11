@@ -2,14 +2,12 @@
 
 # This is the blueprint for both of the game players.
 class Player
-  attr_reader :mark
-
   def initialize(mark)
     @mark = mark
   end
 
   def play(grid)
-    print "Player #{mark} marks "
+    print "Player #{@mark} marks "
 
     cell = gets.chomp.to_i
 
@@ -19,10 +17,10 @@ class Player
       cell = gets.chomp.to_i
     end
 
-    grid.update(cell, mark)
+    grid.update(cell, @mark)
   end
 
   def won
-    "Player #{mark} has won!"
+    "Player #{@mark} has won!"
   end
 end

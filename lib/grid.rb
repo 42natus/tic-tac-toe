@@ -26,14 +26,14 @@ class Grid
     draw(@grid)
   end
 
-  def marked?(cell)
-    @marked.include?(cell)
-  end
-
   def update(cell, mark)
     row, col = coordinates(cell)
     @grid[row][col] = mark
     @marked << cell
+  end
+
+  def marked?(cell)
+    @marked.include?(cell)
   end
 
   def coordinates(cell)
@@ -58,12 +58,11 @@ class Grid
   end
 
   def announce_winner(player_x, player_o)
-    puts player_x.won if horizontal_strike(@grid) == player_x.mark ||
-                         vertical_strike(@grid) == player_x.mark ||
-                         diagonal_strike(@grid) == player_x.mark
-
-    puts player_o.won if horizontal_strike(@grid) == player_o.mark ||
-                         vertical_strike(@grid) == player_o.mark ||
-                         diagonal_strike(@grid) == player_o.mark
+    if horizontal_strike(@grid) == 'X' || vertical_strike(@grid) == 'X' ||
+       diagonal_strike(@grid) == 'X'
+      puts player_x.won
+    else
+      puts player_o.won
+    end
   end
 end
