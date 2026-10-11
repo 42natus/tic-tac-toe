@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# This module is responsible for drawing 3x3 grids in the terminal.
+# This module is responsible for drawing 3x3 grids in the terminal. It's used
+# by a `Grid` object to display its state after each turn.
 module Drawable
   def format(row)
     "  #{row[0]}  |  #{row[1]}  |  #{row[2]}  "
