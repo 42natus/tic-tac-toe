@@ -1,21 +1,25 @@
+# frozen_string_literal: true
+
+# This module defines the methods for checking win conditions and determining
+# the game winner. It's used by the Grid to "observe" its state.
 module Strikable
-  def has_horizontal_strike?(grid)
+  def horizontal_strike?(grid)
     grid.each do |row|
       return true if row.all?('X') || row.all?('O')
     end
-    
+
     false
   end
 
-  def has_vertical_strike?(grid)
-    has_horizontal_strike?(grid.transpose)
+  def vertical_strike?(grid)
+    horizontal_strike?(grid.transpose)
   end
 
   def top_bottom_diagonal(grid)
     diagonal = []
 
     3.times { |i| diagonal << grid[i][i] }
-    
+
     diagonal
   end
 
@@ -26,13 +30,13 @@ module Strikable
     diagonal << grid[0][2]
   end
 
-  def has_diagonal_strike?(grid)
+  def diagonal_strike?(grid)
     tb_diagonal = top_bottom_diagonal(grid)
 
     bt_diagonal = bottom_top_diagonal(grid)
 
-    tb_diagonal.all?('X') || tb_diagonal.all?('O') || 
-    bt_diagonal.all?('X') || bt_diagonal.all?('O')
+    tb_diagonal.all?('X') || tb_diagonal.all?('O') ||
+      bt_diagonal.all?('X') || bt_diagonal.all?('O')
   end
 
   def horizontal_strike(grid)
@@ -52,6 +56,7 @@ module Strikable
     bt_diagonal = bottom_top_diagonal(grid)
 
     return 'X' if tb_diagonal.all?('X') || bt_diagonal.all?('X')
-    return 'O' if tb_diagonal.all?('O') || bt_diagonal.all?('O')
+
+    'O' if tb_diagonal.all?('O') || bt_diagonal.all?('O')
   end
 end

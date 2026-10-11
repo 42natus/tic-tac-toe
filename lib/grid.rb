@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'strikable'
 
+# This defines the 3x3 grid the game will be played on, as well as its
+# behaviour/responsibilities.
 class Grid
   include Strikable
 
@@ -41,6 +45,7 @@ class Grid
   def coordinates(cell)
     @grid.each_index do |row|
       next if @grid[row].index(cell).nil?
+
       return [row, @grid[row].index(cell)]
     end
   end
@@ -50,21 +55,21 @@ class Grid
   end
 
   def strikable?
-    has_horizontal_strike?(@grid) || has_vertical_strike?(@grid) || 
-    has_diagonal_strike?(@grid)
+    horizontal_strike?(@grid) || vertical_strike?(@grid) ||
+      diagonal_strike?(@grid)
   end
-  
+
   def gameover?
     strikable? || draw?
   end
 
   def announce_winner(player_x, player_o)
-    puts player_x.has_won if horizontal_strike(@grid) == player_x.mark ||
-                             vertical_strike(@grid) == player_x.mark ||
-                             diagonal_strike(@grid) == player_x.mark
+    puts player_x.won if horizontal_strike(@grid) == player_x.mark ||
+                         vertical_strike(@grid) == player_x.mark ||
+                         diagonal_strike(@grid) == player_x.mark
 
-    puts player_o.has_won if horizontal_strike(@grid) == player_o.mark ||
-                             vertical_strike(@grid) == player_o.mark ||
-                             diagonal_strike(@grid) == player_o.mark
+    puts player_o.won if horizontal_strike(@grid) == player_o.mark ||
+                         vertical_strike(@grid) == player_o.mark ||
+                         diagonal_strike(@grid) == player_o.mark
   end
 end

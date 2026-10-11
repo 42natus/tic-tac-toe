@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is the blueprint for both of the game players.
 class Player
   attr_reader :mark
 
@@ -11,7 +14,7 @@ class Player
     cell = gets.chomp.to_i
 
     while grid.marked?(cell) || !(1..9).include?(cell)
-      puts "Invalid spot. Try again!"
+      puts 'Invalid spot. Try again!'
 
       cell = gets.chomp.to_i
     end
@@ -19,7 +22,7 @@ class Player
     grid.update(cell, mark)
   end
 
-  def has_won
+  def won
     "Player #{mark} has won!"
   end
 end

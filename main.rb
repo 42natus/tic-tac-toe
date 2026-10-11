@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/grid'
 require_relative 'lib/player'
 require_relative 'lib/strikable'
@@ -10,13 +12,11 @@ grid.display
 
 until grid.gameover?
   player_x.play(grid)
-  
+
   grid.display
 
-  if grid.gameover?
-    break
-  end
-  
+  break if grid.gameover?
+
   player_o.play(grid)
 
   grid.display
