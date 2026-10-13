@@ -25,6 +25,6 @@ to play the game!
 
 ### Screenshot
 
-Here's a usage example:
+Here's a screenshot of the end of gameplay after 2 rounds:
 
 ![screenshot of gameplay](./gameplay.png)
