@@ -59,6 +59,8 @@ class Game
   end
 
   def play
+    return if @rounds.zero?
+
     @rounds.times do |round|
       puts "\n#################"
       puts "ROUND #{round + 1}"
